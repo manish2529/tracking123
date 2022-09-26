@@ -1,0 +1,125 @@
+{% extends '../base.html' %}
+{% load static %}
+
+
+
+    {% block content%}
+     <!-- BEGIN PAGE -->  
+     <div id="main-content">
+        <!-- BEGIN PAGE CONTAINER-->
+        <div class="container-fluid">
+    <!-- BEGIN PAGE HEADER-->   
+            <div class="row-fluid">
+               <div class="span12">
+                   <!-- BEGIN THEME CUSTOMIZER-->
+                   
+                   <!-- END THEME CUSTOMIZER-->
+                  <!-- BEGIN PAGE TITLE & BREADCRUMB-->
+                   <h3 class="page-title">
+                     Customer Table
+                   </h3>
+                   <ul class="breadcrumb">
+                      
+                       
+                   </ul>
+                   <!-- END PAGE TITLE & BREADCRUMB-->
+               </div>
+            </div>
+            <!-- END PAGE HEADER-->
+
+
+            <!-- BEGIN EDITABLE TABLE widget-->
+             <div class="row-fluid">
+                 <div class="span12">
+                     <!-- BEGIN EXAMPLE TABLE widget-->
+                     <div class="widget purple">
+                         <div class="widget-title">
+                             <h4><i class="icon-reorder"></i> Customer</h4>
+                            <span class="tools">
+                                <a href="javascript:;" class="icon-chevron-down"></a>
+                                <a href="javascript:;" class="icon-remove"></a>
+                            </span>
+                         </div>
+                         <div class="widget-body">
+                            <div>
+                                <div class="clearfix">
+                                   <a  href="{% url 'category_xls' %}">
+                                       <button id="" class="btn btn-big btn-info">
+                                           <i class="icon-file icon-white"></i> Export
+                                       </button>
+                                   </a> 
+                                    
+                                </div>
+                                 <div class="space15"></div>
+                                 {% if cust %}
+                                 <table class="table table-striped table-hover table-bordered" id="editable-sample">
+                                     <thead>
+                                     <tr>
+                                         <th>Id</th>
+                                         <th>Full Name</th>
+                                         <th>DOB</th>
+                                         <th>Contact No</th>
+                                         <th>Email</th>
+                                         <th>Gender</th>
+                                         <th>Address</th>
+                                         <th>City/Pincode</th>
+                                         <th>Action</th>
+                                         
+                                     </tr>
+                                     </thead>
+                                     <tbody>
+                                         {% for c in cust %}
+                                     <tr class="">
+                                         <td class="center">{{c.cust_id}}</td>
+                                         <td class="center">{{c.cust_name}}</td>
+                                         <td class="center">{{c.dob}}</td>
+                                         <td class="center">{{c.contact_no}}</td>
+                                         <td class="center">{{c.email}}</td>
+                                         {% if c.gender == 0  %}
+                                         <td class="center">Male</td>
+                                         {% else %}
+                                         <td class="center">Female</td>
+                                         {% endif %}
+                                         <td class="center">{{c.bill_add}}</td>
+                                         <td class="center">{{c.bill_city}}-{{c.bill_pin}}</td>
+                                         <td>
+                                             
+                                            <div style="display:flex">
+                                                {% if c.is_block == False  %}
+                                                <form action="/customer_block/{{c.cust_id}}/" method="POST" onsubmit="return confirm('Are you sure, you want to block..?')">
+                                                    {% csrf_token %}
+                                                    <button class="btn btn-small btn-warning"><i class="icon-ban-circle icon-white"></i> Block</button> &nbsp;&nbsp;
+                                                </form>
+                                                {% else %}
+                                                <form action="/customer_unblock/{{c.cust_id}}/" method="POST" onsubmit="return confirm('Are you sure, you want to unblock..?')">
+                                                    {% csrf_token %}
+                                                <button class="btn btn-small btn-success"><i class="icon-ok icon-white"></i> Unblock</button> &nbsp;&nbsp;
+                                                 </form>
+                                                {% endif %}
+                                                <form action="/customer_delete/{{c.cust_id}}/" method="POST" onsubmit="return confirm('Are you sure, you want to delete..?')">
+                                                    {% csrf_token %}
+                                                <button class="btn btn-small btn-danger"><i class="icon-trash icon-white"></i> Delete</button> 
+                                                </form>
+                                            </div>
+                                             
+                                        </td>
+                                         
+                                     </tr>
+                                        {% endfor %}
+                                     </tbody>
+                                 </table>
+                                 {% endif %}
+                             </div>
+                         </div>
+                     </div>
+                     <!-- END EXAMPLE TABLE widget-->
+                 </div>
+             </div>
+
+            <!-- END EDITABLE TABLE widget-->
+         </div>
+         <!-- END PAGE CONTAINER-->
+      </div>
+      <!-- END PAGE -->  
+
+{% endblock content%}

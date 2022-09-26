@@ -1,0 +1,86 @@
+{% extends '../base.html' %}
+{% load static %}
+
+
+{% block content%}
+    <!-- BEGIN PAGE -->  
+    <div id="main-content">
+        <!-- BEGIN PAGE CONTAINER-->
+        <div class="container-fluid">
+    <!-- BEGIN PAGE HEADER-->   
+            <div class="row-fluid">
+               <div class="span12">
+                   <!-- BEGIN THEME CUSTOMIZER-->
+                   
+                   <!-- END THEME CUSTOMIZER-->
+                  <!-- BEGIN PAGE TITLE & BREADCRUMB-->
+                   <h3 class="page-title">
+                     Product Update Form
+                   </h3>
+                   <ul class="breadcrumb">
+                      
+                       
+                   </ul>
+                   <!-- END PAGE TITLE & BREADCRUMB-->
+               </div>
+            </div>
+            <!-- END PAGE HEADER-->
+
+            <!-- BEGIN PAGE CONTENT-->
+            <div class="row-fluid">
+                <div class="span12">
+                    <!-- BEGIN SAMPLE FORMPORTLET-->
+                    <div class="widget green">
+                        <div class="widget-title">
+                            <h4><i class="icon-reorder"></i> Update Form</h4>
+                            <span class="tools">
+                            <a href="javascript:;" class="icon-chevron-down"></a>
+                            <a href="javascript:;" class="icon-remove"></a>
+                            </span>
+                        </div>
+                        <div class="widget-body">                      
+                            <!-- BEGIN FORM-->
+                            <form action="/product_table/product_update/{{product.p_id}}/" method="POST" class="form-horizontal">
+                                {% csrf_token %}
+
+                                 <input type="hidden" placeholder="" name="cat" value="{{product.cat_id}}" class="input-large" />
+
+                                <div class="control-group">
+                                    <label class="control-label">Product Name</label>
+                                    <div class="controls">
+                                        <input type="text" placeholder="" name="p_name" value="{{product.p_name}}" class="input-large" />
+                                    </div>
+                                </div>
+
+                                <div class="control-group">
+                                    <label class="control-label">Price</label>
+                                    <div class="controls">
+                                        <input type="text" placeholder="" name="p_price" value="{{product.p_price}}" class="input-mini" />
+                                    </div>
+                                </div>
+
+                                <div class="control-group">
+                                    <label class="control-label">Description</label>
+                                    <div class="controls">
+                                        <textarea class="input-large" name="p_desc" rows="3">{{product.p_desc}}</textarea>
+                                    </div>
+                                </div>
+
+                                <div class="form-actions">
+                                    <button type="submit" class="btn btn-success">Update</button>
+                                    <a href={% url 'product_table' %}><button type="button" class="btn">Back</button></a>
+                                </div>
+                            </form>
+                            <!-- END FORM-->
+                        </div>
+                    </div>
+                    <!-- END SAMPLE FORM PORTLET-->
+                </div>
+            </div>
+
+            <!-- END PAGE CONTENT-->
+         </div>
+         <!-- END PAGE CONTAINER-->
+      </div>
+      <!-- END PAGE -->
+      {% endblock content%}

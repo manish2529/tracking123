@@ -1,0 +1,92 @@
+{% extends '../base.html' %}
+{% load static %}
+
+
+
+    {% block content%}
+     <!-- BEGIN PAGE -->  
+     <div id="main-content">
+        <!-- BEGIN PAGE CONTAINER-->
+        <div class="container-fluid">
+    <!-- BEGIN PAGE HEADER-->   
+            <div class="row-fluid">
+               <div class="span12">
+                   <!-- BEGIN THEME CUSTOMIZER-->
+                   
+                   <!-- END THEME CUSTOMIZER-->
+                  <!-- BEGIN PAGE TITLE & BREADCRUMB-->
+                   <h3 class="page-title">
+                     Cart Table
+                   </h3>
+                   <ul class="breadcrumb">
+                      
+                       
+                   </ul>
+                   <!-- END PAGE TITLE & BREADCRUMB-->
+               </div>
+            </div>
+            <!-- END PAGE HEADER-->
+
+
+            <!-- BEGIN EDITABLE TABLE widget-->
+             <div class="row-fluid">
+                 <div class="span12">
+                     <!-- BEGIN EXAMPLE TABLE widget-->
+                     <div class="widget purple">
+                         <div class="widget-title">
+                             <h4><i class="icon-reorder"></i> Cart</h4>
+                            <span class="tools">
+                                <a href="javascript:;" class="icon-chevron-down"></a>
+                                <a href="javascript:;" class="icon-remove"></a>
+                            </span>
+                         </div>
+                         <div class="widget-body">
+                             <div>
+                                 <div class="clearfix">
+                                     
+                                     
+                                 </div>
+                                 <div class="space15"></div>
+                                 {% if cart %}
+                                 <table class="table table-striped table-hover table-bordered" id="editable-sample">
+                                     <thead>
+                                     <tr>
+                                         <th><center>Customer</center></th>
+                                         <th><center>Product</center></th>
+                                         <th><center>Price</center></th>
+                                         <th><center>Qty</center></th>
+                                         <th><center>Total Amount</center></th>
+
+                                     </tr>
+                                     </thead>
+                                     <tbody>  
+                                    {% for cartread in cart %} 
+                                     <tr class="">
+                                         <td>{{cartread.cust_name}}</td>
+                                         <td>{{cartread.p_name}}</td>
+                                         <td><i class="icon-inr icon-white"> {{cartread.p_price}}</i></td>
+                                         <td>{{cartread.qty}}</td>
+                                         <td><i class="icon-inr icon-white"> {{cartread.total}}</i></td>
+                                         
+                                     </tr>
+                                    {% endfor %}
+                                     
+                                     </tbody>
+                                 </table>
+                                 {% else %}
+                                     <h4 class="text-center alert alert-warning"></h4> No Records Found </h4>
+                                 {% endif %}
+                             </div>
+                         </div>
+                     </div>
+                     <!-- END EXAMPLE TABLE widget-->
+                 </div>
+             </div>
+
+            <!-- END EDITABLE TABLE widget-->
+         </div>
+         <!-- END PAGE CONTAINER-->
+      </div>
+      <!-- END PAGE -->  
+
+{% endblock content%}

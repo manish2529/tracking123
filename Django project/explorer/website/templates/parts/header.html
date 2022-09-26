@@ -1,0 +1,126 @@
+{% load static %}
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="x-ua-compatible" content="ie=edge">
+        <title>The Explorer </title>
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="manifest" href="site.webmanifest">
+		<link rel="shortcut icon" type="image/x-icon" href="{% static 'assets/img/logo/logo3.png' %}">
+
+		<!-- CSS here -->
+            <link rel="stylesheet" href="{% static 'assets/css/bootstrap.min.css' %}">
+            <link rel="stylesheet" href="{% static 'assets/css/owl.carousel.min.css' %}">
+            <link rel="stylesheet" href="{% static 'assets/css/flaticon.css' %}">
+            <link rel="stylesheet" href="{% static 'assets/css/slicknav.css' %}">
+            <link rel="stylesheet" href="{% static 'assets/css/animate.min.css' %}">
+            <link rel="stylesheet" href="{% static 'assets/css/magnific-popup.css' %}">
+            <link rel="stylesheet" href="{% static 'assets/css/fontawesome-all.min.css' %}">
+            <link rel="stylesheet" href="{% static 'assets/css/themify-icons.css' %}">
+            <link rel="stylesheet" href="{% static 'assets/css/slick.css' %}">
+            <link rel="stylesheet" href="{% static 'assets/css/nice-select.css' %}">
+            <link rel="stylesheet" href="{% static 'assets/css/style.css' %}">
+           <style>
+               .center {
+                display: block;
+                margin-left: auto;
+                margin-right: auto;
+                width: 50%;
+              }
+           </style>
+           
+            
+   </head>
+
+   <body>
+       
+    <!-- Preloader Start -->
+    <div id="preloader-active">
+        <div class="preloader d-flex align-items-center justify-content-center">
+            <div class="preloader-inner position-relative">
+                <div class="preloader-circle"></div>
+                <div class="preloader-img pere-text">
+                    <img src="{% static 'assets/img/logo/logo3.png' %}" alt="">
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Preloader Start -->
+
+    <header>
+        <!-- Header Start -->
+       <div class="header-area">
+            <div class="main-header ">
+                
+               <div class="header-bottom  header-sticky">
+                    <div class="container-fluid">
+                        <div class="row align-items-center">
+                            <!-- Logo -->
+                            <div class="col-xl-1 col-lg-1 col-md-1 col-sm-3">
+                                <div class="logo">
+                                  <a href="{% url 'homepage' %}"><img src="{% static 'assets/img/logo/logo3.png' %}" alt=""></a>
+                                </div>
+                            </div>
+                            <div class="col-xl-6 col-lg-8 col-md-7 col-sm-5">
+                                <!-- Main-menu -->
+                                <div class="main-menu f-right d-none d-lg-block">
+                                    <nav>                                                
+                                        <ul id="navigation">                                                                                                                                     
+                                            <li><a href="{% url 'homepage' %}">Home</a></li>
+                                            <li class="hot"><a href="#">Category</a>
+                                                <ul class="submenu">
+                                                    {% for catread in category %}
+                                                    <li><a href="/product_page/{{catread.cat_id}}/">{{catread.cat_name}}</a></li>
+                                                    {% endfor %}
+                                                </ul>
+                                            </li>
+                                            <li><a href="{% url 'feedback' %}">Feedback</a></li>
+                                            <li><a href="{% url 'about' %}">About us</a></li>
+                                            
+                                            {% if request.session.is_logged_cust %}
+                                            <li><a href="#"></a></li>
+                                            <li>{{cust.cust_name}}
+                                                <ul class="submenu">
+                                                    <li><a href="{% url 'cpassword' %}">Change Password</a></li>
+                                                    <li><a href="{% url 'editprofile' %}">Edit Profile</a></li>
+                                                    <li><a href="{% url 'cartt' %}">My Cart</a></li>
+                                                    <li><a href="{% url 'order' %}">My order</a></li>
+                                                    <li><a href="{% url 'logout' %}">Log out</a></li>
+                                                </ul>
+                                            </li>
+
+                                            {% else %}
+                                            <li><a href="{% url 'register' %}">Register</a></li>
+                                            <li><a href="{% url 'login' %}">Log In</a></li>
+                                            {% endif %}
+                                            
+                                        </ul>
+                                    </nav>
+                                </div>
+                            </div> 
+                            <div class="col-xl-4 col-lg-3 col-md-3 col-sm-3 fix-card">
+                                <ul class="header-right f-right d-none d-lg-block d-flex justify-content-between">
+                                    <li class="d-none d-xl-block">
+                                        <form  action="{% url 'search_result' %}" method="POST" >
+                                            {% csrf_token %}
+                                        <div class="form-box f-right ">
+                                            <input type="text" name="srh" placeholder="Search products">
+                                            <div class="search-icon">
+                                              <button style="border: none; background: none;"> <i class="fas fa-search special-tag"></i></button>  
+                                            </div>
+                                        </div>
+                                        </form>
+                                     </li>
+                                </ul>
+                            </div>
+                            <!-- Mobile Menu -->
+                            <div class="col-12">
+                                <div class="mobile_menu d-block d-lg-none"></div>
+                            </div>
+                        </div>
+                    </div>
+               </div>
+            </div>
+       </div>
+        <!-- Header End -->
+    </header>

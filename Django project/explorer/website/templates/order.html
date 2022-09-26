@@ -1,0 +1,90 @@
+{% extends 'base2.html' %}
+{% load static %}
+
+
+
+    {% block content %}
+
+    <!-- slider Area Start-->
+    <div class="slider-area ">
+        <!-- Mobile Menu -->
+        <div class="single-slider slider-height2 d-flex align-items-center" data-background="{% static 'assets/img/hero/camping.jpg' %}">
+            <div class="container">
+                <div class="row">
+                    <div class="col-xl-12">
+                        <div class="hero-cap text-center">
+                            <h2>My Order</h2>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <br>
+    <!-- slider Area End-->
+    {% if ordr%}
+    {% for odr in ordr%}
+    <div class="container">
+        <article class="card">
+            
+            <div class="card-body">
+                <h6><strong>Order no:</strong> {{odr.flag}}</h6>
+                <article class="card">
+                    <div class="card-body row">
+                        <div class="col"> <strong>Billing Address:</strong><br>{{odr.cust_name}}<br>{{odr.bill_add}} <br> {{odr.bill_city}} : {{odr.bill_pin}} </div>
+                        <div class="col"> <strong>Shipping Address:</strong><br>{{odr.cust_name}}<br>{{odr.ship_add}} <br> {{odr.ship_city}} : {{odr.ship_pin}} </div>
+                        <div class="col"> <strong>Date:</strong> <br> {{odr.date}} </div>
+                        {% if odr.order_status == 2  %}
+                        <div class="col"> <strong>OrderStatus: </strong> <br> Placed </div>
+                        {% elif odr.order_status == 0 %}
+                        <div class="col"> <strong>OrderStatus:</strong> <br> Delivered </div>
+                        {% else %}
+                        <div class="col"> <strong>OrderStatus:</strong> <br> Canceled </div>
+                        {% endif %}
+                    </div>
+                </article>
+                
+                <hr>
+                
+                <ul class="row">
+                    {% for odr in ordr %}
+                    <li class="col-md-4">
+                        <figure class="itemside mb-3">
+                            <div class="aside"><img src="{{odr.p_image}}" class="" height="250px" width="250px"></div>
+                            <figcaption class="info align-self-center">
+                                <p class="title">Product: {{odr.p_name}} <br> Price : &#8377; {{odr.p_price}} &nbsp; &nbsp; Qty : {{odr.qty}} </p> <span class="text-muted">Total: &#8377; {{odr.total}} </span>
+                            </figcaption>
+                        </figure>
+                    </li>
+                    {% endfor %}
+                </ul>
+                
+                <hr>
+                <article class="card">
+                    <div class="card-body row">
+                        <div class="col"> <a href="{% url 'homepage' %}" class="tp_btn" data-abc="true"> <i class="fa fa-chevron-left"></i> Invoice</a> </div>       
+                       
+                        <div class="col"> <strong>Payment Mode :</strong> <br>Cash On Delivery </div>
+
+                        <div class="col"> <strong>GST 9% Amount :</strong> <br>&#8377; {{gst}} </div>
+                        
+                        <div class="col"> <strong>Grand Amount :</strong> <br>&#8377; {{gtotal}} </div>
+                        {% if odr.order_status == 2  %}
+                        <div class="col"> <a href="/cancel/{{odr.order_id}}/" class="tp_btn" data-abc="true">  Cancel <i class="fa fa-chevron-right"></i></a>  </div>
+                        {% endif %}
+                    </div>
+                </article>
+               
+            </div>
+        </article>
+    </div>
+    <br>
+    {% endfor %}
+    {% else %}
+    <h4 class="text-center alert alert-warning"> Not place any order yet </h4>
+    <div class="checkout_btn_inner">
+     <center> <a class="btn_1" href="{% url 'homepage' %}">Continue Shopping</a> </center> 
+    </div>
+    {% endif %}
+  <!--================End Checkout Area =================-->
+  {% endblock content %}

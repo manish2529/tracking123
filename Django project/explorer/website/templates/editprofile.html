@@ -1,0 +1,89 @@
+{% extends 'base2.html' %}
+{% load static %}
+
+
+
+    {% block content %}
+
+    <!-- slider Area Start-->
+    <div class="slider-area ">
+        <!-- Mobile Menu -->
+        <div class="single-slider slider-height2 d-flex align-items-center" data-background="{% static 'assets/img/hero/camping.jpg' %}">
+            <div class="container">
+                <div class="row">
+                    <div class="col-xl-12">
+                        <div class="hero-cap text-center">
+                            <h2>Edit Profile</h2>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- slider Area End-->
+
+    <!--================login_part Area =================-->
+    <section class="checkout_area section"> <br>
+        <div class="container">
+            
+           
+            {% if cust %}
+            <div class="billing_details">
+                <div class="row">
+                <div class="col-lg-8">
+                   <center><h2>My Profile</h2></center>
+                        <br>
+    
+                        <form class="" action="/editpro/{{cust.cust_id}}/" method="post" onsubmit="return confirm('Are you sure, you want to submit..?')">
+                            {% csrf_token %}
+                            
+                           Name :-<div class="col-md-4 form-group">
+                               <input type="text" class="form-control" id="first" name="name" value="{{cust.cust_name}}" />
+                              </div> 
+                            DOB :-  
+                            <div class="col-md-4 form-group">
+                                <input type="text" class="form-control" id="first" name="dob" value="{{cust.dob}}" />
+                            </div> 
+                            Gender :-
+                            {% if cust.gender == 0  %}
+                            <div class="col-md-4 form-group">
+                                <input type="text" class="form-control" id="first" name="gender" value="Male" />
+                            </div>
+                            {% else %}
+                            <div class="col-md-4 form-group">
+                                <input type="text" class="form-control" id="first" name="gender" value="Female" />
+                            </div>
+                            {% endif %}
+                            Email :-
+                            <div class="col-md-4 form-group">
+                                <input type="email" class="form-control"  name="email" value="{{cust.email}}" >
+                            </div>
+                            Contact no. :-
+                            <div class="col-md-4 form-group">
+                                <input type="text" class="form-control"  name="contact" value="{{cust.contact_no}}" >
+                            </div>
+                            Address :-
+                            <div class="col-md-6 form-group">
+                                <input type="text" class="form-control"  name="add" value="{{cust.bill_add}}" >
+                            </div> 
+                            City :-
+                            <div class="col-md-4 form-group">
+                                <input type="text" class="form-control"  name="city" value="{{cust.bill_city}}" >
+                            </div>
+                            Pincode :-
+                            <div class="col-md-4 form-group">
+                                <input type="text" class="form-control"  name="pin" value="{{cust.bill_pin}}" >
+                            </div>
+                            <br>
+                            &nbsp; &nbsp; &nbsp; &nbsp; <button type="submit" value="submit" class="tp_btn">Submit</button>
+                            &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; <a class="tp_btn" href="{% url 'homepage' %}">Return to home</a>
+                        </form>
+                    </div> 
+                </div>
+            </div>
+            {% endif %}
+              
+        </div>
+      </section>
+    <!--================login_part end =================-->
+  {% endblock content %}

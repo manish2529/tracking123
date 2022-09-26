@@ -1,0 +1,75 @@
+{% extends '../base.html' %}
+{% load static %}
+
+
+{% block content%}
+    <!-- BEGIN PAGE -->  
+    <div id="main-content">
+        <!-- BEGIN PAGE CONTAINER-->
+        <div class="container-fluid">
+    <!-- BEGIN PAGE HEADER-->   
+            <div class="row-fluid">
+               <div class="span12">
+                   <!-- BEGIN THEME CUSTOMIZER-->
+                   
+                   <!-- END THEME CUSTOMIZER-->
+                  <!-- BEGIN PAGE TITLE & BREADCRUMB-->
+                   <h3 class="page-title">
+                     Category Insert Form
+                   </h3>
+                   <ul class="breadcrumb">
+                      
+                       
+                   </ul>
+                   <!-- END PAGE TITLE & BREADCRUMB-->
+               </div>
+            </div>
+            <!-- END PAGE HEADER-->
+
+            <!-- BEGIN PAGE CONTENT-->
+            <div class="row-fluid">
+                <div class="span12">
+                    <!-- BEGIN SAMPLE FORMPORTLET-->
+                    <div class="widget green">
+                        <div class="widget-title">
+                            <h4><i class="icon-reorder"></i> Insert Form</h4>
+                            <span class="tools">
+                            <a href="javascript:;" class="icon-chevron-down"></a>
+                            <a href="javascript:;" class="icon-remove"></a>
+                            </span>
+                        </div>
+                        <div class="widget-body">
+                            <!-- BEGIN FORM-->
+                            <form action="" method="POST" class="form-horizontal">
+                                {% csrf_token %}
+                                <div class="control-group">
+                                    <label class="control-label">Category Name</label>
+                                    <div class="controls">
+                                        <input type="text" placeholder="" name="cat_name" class="input-large" />
+                                    </div>
+                                </div>
+                                <div class="control-group">
+                                    <label class="control-label">Description</label>
+                                    <div class="controls">
+                                        <textarea class="input-xlarge" name="cat_desc" rows="3"></textarea>
+                                    </div>
+                                </div> 
+                                <div class="form-actions">
+                                    <button type="submit" class="btn btn-success">Submit</button>
+                                    <button type="reset" class="btn btn-default">Reset</button>
+                                    <a href="{% url 'category_table' %"}><button type="button" class="btn">Back</button></a>
+                                </div>
+                            </form>
+                            <!-- END FORM-->
+                        </div>
+                    </div>
+                    <!-- END SAMPLE FORM PORTLET-->
+                </div>
+            </div>
+
+            <!-- END PAGE CONTENT-->
+         </div>
+         <!-- END PAGE CONTAINER-->
+      </div>
+      <!-- END PAGE -->
+      {% endblock content%}

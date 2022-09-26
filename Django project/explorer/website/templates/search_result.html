@@ -1,0 +1,71 @@
+
+{% extends 'base2.html' %}
+{% load static %}
+
+
+
+    {% block content %}
+    <main>
+        
+
+        <!-- Latest Products Start -->
+        <section class="latest-product-area padding-bottom">
+            <div class="container">
+                <div class="row product-btn d-flex justify-content-end align-items-end">
+                    <!-- Section Tittle -->
+                    <div class="col-xl-4 col-lg-5 col-md-5"><br>
+                        <div class="section-tittle mb-30">
+                            <h4></h4>
+                        </div>
+                    </div>
+                    <div class="col-xl-8 col-lg-7 col-md-7">
+                        <div class="properties__button f-right">
+                            
+                        </div>
+                    </div>
+                </div>
+                <!-- Nav Card -->
+                <div class="tab-content" id="nav-tabContent">
+                    <!-- card one -->
+                    <div class="tab-pane  fade show active" id="nav-home" role="tabpanel" aria-labelledby="nav-home-tab">
+                        <div class="row">
+                            {% if sr %}
+
+                            {% for pd in sr %}
+                        
+                            <div class="col-xl-4 col-lg-4 col-md-6">
+                                <div class="single-product mb-60">
+                                    <div class="product-img">
+                                        <img src="{{pd.p_image}}" alt="" width="300px" height="300px">
+                                    </div>
+                                    <div class="product-caption">
+                                        <h3>{{pd.p_name}}</h3>
+                                        <div class="price">
+                                            <ul>
+                                                <li>Price :  &#8377;{{pd.p_price}}</li>
+                                                
+                                            </ul>
+                                        </div>
+                                    </div>
+                                    <a href="/product_page/single_product/{{pd.p_id}}/"><button class="btn-dark mr-1" type="button">View Details</button></a>
+                                        <button class="btn-success" type="button">BUY NOW</button>
+                                </div>
+                            </div>
+                            {% endfor %}
+                            {% else %}
+                            
+                            <img src="{% static 'assets/img/gallery/nofound2.jpg' %}" alt="" class="center" width="600px" height="300px">
+                          
+                            {% endif %}
+                           
+                            
+                        </div>
+                        
+                    </div>
+                </div>
+            </div>
+        </section>
+        <!-- Latest Products End -->
+
+    </main>
+    {% endblock content %}

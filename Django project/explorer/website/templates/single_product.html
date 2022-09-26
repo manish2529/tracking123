@@ -1,0 +1,113 @@
+{% extends 'base2.html' %}
+{% load static %}
+
+
+
+    {% block content %}
+    
+    <!-- slider Area Start-->
+    <div class="slider-area ">
+        <!-- Mobile Menu -->
+        <div class="single-slider slider-height2 d-flex align-items-center" data-background="{% static 'assets/img/hero/camping.jpg' %}">
+            <div class="container">
+                <div class="row">
+                    <div class="col-xl-12">
+                        <div class="hero-cap text-center">
+                            <h2>Single Product Page</h2>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- slider Area End-->
+
+  <!--================Single Product Area =================-->
+  <div class="product_image_area">
+    <div class="container">
+      <div class="row justify-content-">
+        <div class="col-lg-6">
+          <div class="product_img_slide owl-carousel">
+            {% for img in gallery %}
+            <div class="single_product_item">
+              <img src="{{img.p_image}}" alt="#" class="" width="500px" height="500px">
+            </div>
+            {% endfor %}
+          </div>
+        </div> 
+        <div class="col-lg-5">
+          <div class="single_product_text text-center">
+            <h3>&nbsp;{{product.p_name}}</h3>
+            <p>
+                  {{product.p_desc}}
+            </p>
+            <form action="" method="POST">
+                {% csrf_token %}
+            <div class="card_area">
+                <div class="product_count_area">
+                    <p>Quantity</p>
+                    <div class="product_count d-inline-block">
+                        <span class="product_count_item inumber-decrement"> <i class="ti-minus"></i></span>
+                        <input class="product_count_item input-number" name="qty" type="text" value="1" min="1" max="3">
+                        <span class="product_count_item number-increment"> <i class="ti-plus"></i></span>
+                    </div>
+                    <p><i class="fa fa-rupee text-success">&#8377;{{product.p_price}}</p></i> 
+                </div>
+                <input type="hidden" placeholder="" name="pid" value="{{product.p_id}}"/>
+                {% if request.session.is_logged_cust %}
+                <input type="hidden" placeholder="" name="custid" value="{{cust.cust_id}}"/>
+                
+              <div class="add_to_cart">
+                  <button type="submit" value="submit" class="btn_3">
+                    Add To Cart
+                </button> <br>
+                    {% if messages %}
+                            {% for msg in messages %}
+                                    <code> {{ msg }} </code>
+                            {% endfor %}
+                    {% endif %}
+              </div>
+              {% else %}
+              <div class="add_to_cart">
+                <a href="{% url 'login' %}"><button class="btn btn-dark mr-2" type="button">Add To Cart</button></a>
+            </div>
+              {% endif %}
+            </form>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!--================End Single Product Area =================-->
+        <!-- client review part here -->
+        <section class="client_review">
+          <div class="container">
+              <div class="row justify-content-center">
+                  <div class="col-lg-8">
+                      <div class="client_review_slider owl-carousel">
+                        {% if feed %}
+                        {% for feed in feed %}
+                          <div class="single_client_review">
+                              <div class="client_img">
+                                  <img src="{% static 'assets/img/client_3.jpg' %}" alt="#">
+                              </div>
+                              <p>"{{feed.feedback}}"</p>
+                              <h5>- {{feed.cust_name}}</h5>
+                          </div>
+                          {% endfor %}
+                          {% else %}
+							<div class="single_client_review">
+                              
+                              <p>"No review for this product.Be the first one Buy now."</p>
+                              
+                          </div>
+				
+                          {% endif %}
+                      </div>
+                  </div>
+              </div>
+          </div>
+      </section>
+      <!-- client review part end -->
+  {% endblock content %}

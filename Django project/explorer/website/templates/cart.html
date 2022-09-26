@@ -1,0 +1,109 @@
+{% extends 'base2.html' %}
+{% load static %}
+
+
+
+    {% block content %}
+
+  <!-- slider Area Start-->
+  <div class="slider-area ">
+    <!-- Mobile Menu -->
+    <div class="single-slider slider-height2 d-flex align-items-center" data-background="{% static 'assets/img/hero/camping.jpg' %}">
+        <div class="container">
+            <div class="row">
+                <div class="col-xl-12">
+                    <div class="hero-cap text-center">
+                        <h2>Card List</h2>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+  </div>
+  <!-- slider Area End-->
+
+  <!--================Cart Area =================-->
+  <section class="cart_area section_padding">
+    <div class="container">
+      <div class="cart_inner">
+        <div class="table-responsive">
+          {% if data %}
+          <table class="table">
+            <thead>
+              <tr>
+                <th scope="col"><h3>Product</h3></th>
+                <th scope="col"><h3>Price</h3></th>
+                <th scope="col"><h3>Quantity</h3></th>
+                <th scope="col"><h3>Total</h3></th>
+              </tr>
+            </thead>
+            <tbody>
+              {% for data in data %}
+              <tr>
+                <td>
+                  <div class="media">
+                    <div class="d-flex">
+                      <img src="{{data.p.p_image}}" alt="" />
+                    </div>
+                    <div class="media-body">
+                      <p>{{data.p.p_name}}</p>
+                      <br>
+                      <br>
+                      <a href='/cart_delete/{{data.cart_id}}/'><h5>Remove</h5></a>
+                    </div>
+                  </div>
+                </td>
+                <td>
+                  <p>&#8377;{{data.p.p_price}}</p>
+                </td>
+                <td>
+                 <center><p>{{data.qty}}</p></center> 
+                </td>
+                <td>
+                  <p>&#8377;{{data.total}}</p>
+                </td>
+              </tr>
+              {%endfor%}
+              <tr>
+                <td></td>
+                <td></td>
+                <td>
+                  <p>SubTotal</p> <br>
+                  <p>GST 9%</p> <br>
+                  <p>Shipping</p>
+                </td>
+                <td>
+                  <p>&#8377;{{amount}}</p> <br>
+                  <p>&#8377;{{gst}}</p> <br>
+                  <p>Free</p>
+                </td>
+                
+              </tr>
+              <tr class="shipping_area">
+                <td></td>
+                <td></td>
+                <td>
+                  <p>Grand Total</p>
+                </td>
+                <td>
+                  <p>&#8377;{{gtotal}}</p>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+          <div class="checkout_btn_inner float-right">
+            <a class="btn_1" href="{% url 'homepage' %}">Continue Shopping</a>
+            <a class="btn_1 checkout_btn_1" href="{% url 'checkout' %}">Proceed to checkout</a>
+          </div>
+
+          {% else %}
+            <h4 class="text-center alert alert-warning"> No Product in a Cart </h4>
+            <div class="checkout_btn_inner">
+             <center> <a class="btn_1" href="{% url 'homepage' %}">Continue Shopping</a> </center> 
+            </div>
+          {% endif %}
+        </div>
+      </div>
+  </section>
+  <!--================End Cart Area =================-->
+  {% endblock content %}

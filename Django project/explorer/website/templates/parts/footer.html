@@ -1,0 +1,154 @@
+{% load static %}
+<footer>
+
+       <!-- Footer Start-->
+       <div class="footer-area footer-padding">
+           <div class="container">
+               <div class="row d-flex justify-content-between">
+                   <div class="col-xl-3 col-lg-3 col-md-5 col-sm-6">
+                      <div class="single-footer-caption mb-50">
+                        <div class="single-footer-caption mb-30">
+                             <!-- logo -->
+                            <div class="footer-logo">
+                                <a href="index.html"><img src="{% static 'assets/img/logo/logo3.png' %}" alt=""></a>
+                            </div>
+                            <div class="footer-tittle">
+                                <div class="footer-pera">
+                                    <p>Here you found all types of camping products.</p>
+                               </div>
+                            </div>
+                        </div>
+                      </div>
+                   </div>
+                   <div class="col-xl-2 col-lg-3 col-md-3 col-sm-5">
+                       <div class="single-footer-caption mb-50">
+                           <div class="footer-tittle">
+                               <h4>Quick Links</h4>
+                               <ul>
+                                   <li><a href="{% url 'homepage' %}">Homepage</a></li>
+                                   <li><a href="{% url 'register' %}">Register</a></li>
+                                   <li><a href="{% url 'login' %}">Login</a></li>
+                                   <li><a href="">About Us</a></li>
+                               </ul>
+                           </div>
+                       </div>
+                   </div>
+                   <div class="col-xl-3 col-lg-3 col-md-4 col-sm-7">
+                       <div class="single-footer-caption mb-50">
+                           <div class="footer-tittle">
+                               <h4>Products In</h4>
+                               <ul>
+                                   {% for catread in category %}
+                                   <li><a href="/product_page/{{catread.cat_id}}/">{{catread.cat_name}}</a></li>
+                                   {% endfor %}
+                               </ul>
+                           </div>
+                       </div>
+                   </div>
+                   <div class="col-xl-3 col-lg-3 col-md-5 col-sm-7">
+                       <!-- <div class="single-footer-caption mb-50">
+                           <div class="footer-tittle">
+                               <h4>Support</h4>
+                               <ul>
+                              <li><a href="#">Frequently Asked Questions</a></li>
+                                <li><a href="#">Terms & Conditions</a></li>
+                                <li><a href="#">Privacy Policy</a></li>
+                                <li><a href="#">Privacy Policy</a></li>
+                                <li><a href="#">Report a Payment Issue</a></li> 
+                            </ul>
+                           </div>
+                       </div>  --> 
+                   </div>
+               </div>
+               <!-- Footer bottom -->
+               <div class="row">
+                <div class="col-xl-7 col-lg-7 col-md-7">
+                    <div class="footer-copy-right">
+                        <p><!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
+  Copyright &copy;<script>document.write(new Date().getFullYear());</script> All rights reserved | The Explorer
+  <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. --></p>                   </div>
+                </div>
+                 <div class="col-xl-5 col-lg-5 col-md-5">
+                    <div class="footer-copy-right f-right">
+                        <!-- social -->
+                        <div class="footer-social">
+                            <a href=""><i class="fab fa-twitter"></i></a>
+                            <a href=""><i class="fab fa-facebook-f"></i></a>
+                            <a href=""><i class="fab fa-behance"></i></a>
+                            <a href=""><i class="fas fa-globe"></i></a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+           </div>
+       </div>
+       <!-- Footer End-->
+
+   </footer>
+   
+    <!-- JS here -->
+    
+<script>
+    var slideIndex = 0;
+    showSlides();
+    
+    function showSlides() {
+      var i;
+      var slides = document.getElementsByClassName("mySlides");
+      var dots = document.getElementsByClassName("dot");
+      for (i = 0; i < slides.length; i++) {
+        slides[i].style.display = "none";  
+      }
+      slideIndex++;
+      if (slideIndex > slides.length) {slideIndex = 1}    
+      for (i = 0; i < dots.length; i++) {
+        dots[i].className = dots[i].className.replace(" active", "");
+      }
+      slides[slideIndex-1].style.display = "block";  
+      dots[slideIndex-1].className += " active";
+      setTimeout(showSlides, 3000); // Change image every 2 seconds
+    }
+    </script>
+    
+	
+		<!-- All JS Custom Plugins Link Here here -->
+        <script src="{% static 'assets/js/vendor/modernizr-3.5.0.min.js' %}"></script>
+		<!-- Jquery, Popper, Bootstrap -->
+		<script src="{% static 'assets/js/vendor/jquery-1.12.4.min.js' %}"></script>
+        <script src="{% static 'assets/js/popper.min.js' %}"></script>
+        <script src="{% static 'assets/js/bootstrap.min.js' %}"></script>
+	    <!-- Jquery Mobile Menu -->
+        <script src="{% static '' %}./assets/js/jquery.slicknav.min.js"></script>
+
+		<!-- Jquery Slick , Owl-Carousel Plugins -->
+        <script src="{% static 'assets/js/owl.carousel.min.js' %}"></script>
+        <script src="{% static 'assets/js/slick.min.js' %}"></script>
+
+		<!-- One Page, Animated-HeadLin -->
+        <script src="{% static 'assets/js/wow.min.js' %}"></script>
+		<script src="{% static 'assets/js/animated.headline.js' %}"></script>
+        <script src="{% static 'assets/js/jquery.magnific-popup.js' %}"></script>
+
+		<!-- Scrollup, nice-select, sticky -->
+        <script src="{% static 'assets/js/jquery.scrollUp.min.js' %}"></script>
+        <script src="{% static 'assets/js/jquery.nice-select.min.js' %}"></script>
+		<script src="{% static 'assets/js/jquery.sticky.js' %}"></script>
+        
+        <!-- contact js -->
+        <script src="{% static 'assets/js/contact.js' %}"></script>
+        <script src="{% static 'assets/js/jquery.form.js' %}"></script>
+        <script src="{% static 'assets/js/jquery.validate.min.js' %}"></script>
+        <script src="{% static 'assets/js/mail-script.js' %}"></script>
+        <script src="{% static 'assets/js/jquery.ajaxchimp.min.js' %}"></script>
+        
+		<!-- Jquery Plugins, main Jquery -->	
+        <script src="{% static 'assets/js/plugins.js' %}"></script>
+        <script src="{% static 'assets/js/main.js' %}"></script>
+        
+        <!-- swiper js -->
+        <script src="{% static './assets/js/swiper.min.js' %}"></script>
+            <!-- swiper js -->
+        <script src="{% static 'assets/js/mixitup.min.js' %}"></script>
+        <script src="{% static 'assets/js/jquery.counterup.min.js' %}"></script>
+        <script src="{% static 'assets/js/waypoints.min.js' %}"></script>
+    </body>

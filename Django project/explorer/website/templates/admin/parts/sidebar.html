@@ -1,0 +1,62 @@
+{% load static%}
+<!-- BEGIN SIDEBAR -->
+<div class="sidebar-scroll">
+    <div id="sidebar" class="nav-collapse collapse">
+
+     <!-- BEGIN RESPONSIVE QUICK SEARCH FORM -->
+     <div class="navbar-inverse">
+        <form class="navbar-search visible-phone">
+           <input type="text" class="search-query" placeholder="Search" />
+        </form>
+     </div>
+     <!-- END RESPONSIVE QUICK SEARCH FORM -->
+     <!-- BEGIN SIDEBAR MENU -->
+      <ul class="sidebar-menu">
+          <li class="sub-menu">
+              <a class="" href="{% url 'index' %}">
+                  <i class="icon-dashboard"></i>
+                  <span>Dashboard</span>
+              </a>
+          </li>
+          <li class="sub-menu">
+              <a class="" href="{% url 'customer_table' %}">
+                  <i class="icon-user"></i>
+                  <span>Customer</span>
+              </a>
+          </li>
+          <li class="sub-menu">
+            <a class="" href="{% url 'category_table' %}">
+                <i class="icon-th-large"></i>
+                <span>Category</span>
+            </a>
+          </li>
+          <li class="sub-menu">
+            <a class="" href="{% url 'product_table' %}">
+                <i class="icon-th"></i>
+                <span>Products</span>
+            </a>
+          </li>
+          <li class="sub-menu">
+            <a class="" href="{% url 'cart_table' %}">
+                <i class="icon-shopping-cart"></i>
+                <span>Cart</span>
+            </a>
+          </li>
+          <li class="sub-menu">
+            <a class="" href="{% url 'order_table' %}">
+                <i class="icon-list"></i>
+                <span>Orders</span>
+            </a>
+          </li>
+          <li class="sub-menu">
+            <a class="" href="{% url 'feedback_table' %}">
+                <i class="icon-comments-alt"></i>
+                <span>Feedback</span>
+            </a>
+          </li>
+
+      </ul>
+     <!-- END SIDEBAR MENU -->
+  </div>
+  </div>
+  <!-- END SIDEBAR -->

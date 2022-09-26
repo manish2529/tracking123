@@ -1,0 +1,103 @@
+{% extends '../base.html' %}
+{% load static %}
+
+{% block content%}
+      <!-- BEGIN PAGE -->
+      <div id="main-content">
+         <!-- BEGIN PAGE CONTAINER-->
+         <div class="container-fluid">
+            <!-- BEGIN PAGE HEADER-->
+            <div class="row-fluid">
+               <div class="span12">
+
+                  <!-- BEGIN PAGE TITLE & BREADCRUMB-->
+                   <h3 class="page-title">
+                     Gallery
+                   </h3>
+                   <ul class="breadcrumb">
+
+                   </ul>
+                   <!-- END PAGE TITLE & BREADCRUMB-->
+               </div>
+            </div>
+            <!-- END PAGE HEADER-->
+            <!-- BEGIN PAGE CONTENT-->
+            <div class="row-fluid">
+                <div class="span12">
+                    <!-- BEGIN SAMPLE FORMPORTLET-->
+                    <div class="widget green">
+                        <div class="widget-title">
+                            <h4><i class="icon-camera"></i> {{product.p_name}}</h4>
+                            <span class="tools">
+                            <a href="javascript:;" class="icon-chevron-down"></a>
+                            <a href="javascript:;" class="icon-remove"></a>
+                            </span>
+                        </div>
+                        <div class="widget-body">
+                            <div class="megaexamples">
+                                
+                                <form action="{% url 'product_imageupload' %}" method="post" enctype="multipart/form-data">
+                                    {% csrf_token %}
+                                    <h3>Select Image to upload:</h3> </br>
+                                    <input type="hidden" placeholder="" name="pid" value="{{product.p_id}}" class="input-large" />
+                                    <input type="file" name="pimage" id=""> 
+                                    <input type="submit" value="Upload Image" class="btn btn-primary" name="submit">
+                                    <a href={% url 'product_table' %}><button type="button" class="btn">Back</button></a>
+                                  </form>
+
+
+                                  <ul class="breadcrumb"></ul>
+
+                                    
+                                <div class="clear"></div>
+                                {% if gallery %}
+                                <div class="metro-gallery">
+                                    <!-- The GRID System -->
+                                    <div class="metro-gal-container noborder norounded dark-bg-entries">
+                                    {% for img in gallery%}
+                                    <!-- A GALLERY ENTRY -->
+                                    <div class="mega-entry" id="mega-entry-1" data-src="{{img.p_image}}" data-width="780" data-height="585" data-lowsize="">
+
+                                        <div class="mega-covercaption mega-square-bottom mega-landscape-right mega-portrait-bottom mega-red">
+                                            <!-- The Content Part with Hidden Overflow Container -->
+
+                                            <div class="mega-title"><img src="{{img.p_image}}" alt="" style="float: left; padding-right: 15px;"/>Good for Nothing</div>
+                                                                                    
+                                        </div>
+
+                                        <!-- The Link Buttons -->
+                                        <div class="mega-coverbuttons">
+                                            <div style="display:flex">
+                                                <form action="/product_imagedelete/{{img.g_id}}/" method="POST" onsubmit="return confirm('Are you sure, you want to delete..?')">
+                                                {% csrf_token %}
+                                                    <button><img src="{% static 'admin/img/delete.jpg' %}" alt=""> </button>
+                                                </form>
+                                                <form> 
+                                                <a class="fancybox" rel="group" href="{{img.p_image}}" title="{{product.p_name}}"><div class="mega-view mega-red"></div></a>
+                                                </form>
+                                            </div>
+                                        </div>
+
+                                    </div>
+
+                                    {% endfor %}
+
+                                 </div>
+                                </div>
+                                
+                                {% else %}
+                                <h4 class="text-center alert alert-warning"> No Images Uploaded Yet </h4>
+                                {% endif %}
+                            </div>
+                        </div>
+                    </div>
+                    <!-- END SAMPLE FORM PORTLET-->
+                </div>
+            </div>
+
+            <!-- END PAGE CONTENT-->
+         </div>
+         <!-- END PAGE CONTAINER-->
+      </div>
+      <!-- END PAGE -->
+      {% endblock content%}

@@ -1,0 +1,90 @@
+{% extends '../base.html' %}
+{% load static %}
+
+
+{% block content%}
+    <!-- BEGIN PAGE -->  
+    <div id="main-content">
+        <!-- BEGIN PAGE CONTAINER-->
+        <div class="container-fluid">
+    <!-- BEGIN PAGE HEADER-->   
+            <div class="row-fluid">
+               <div class="span12">
+                   <!-- BEGIN THEME CUSTOMIZER-->
+                   
+                   <!-- END THEME CUSTOMIZER-->
+                  <!-- BEGIN PAGE TITLE & BREADCRUMB-->
+                   <h3 class="page-title">
+                     Change Password 
+                   </h3>
+                   <ul class="breadcrumb">
+                      
+                       
+                   </ul>
+                   <!-- END PAGE TITLE & BREADCRUMB-->
+               </div>
+            </div>
+            <!-- END PAGE HEADER-->
+
+            <!-- BEGIN PAGE CONTENT-->
+            <div class="row-fluid">
+                <div class="span12">
+                    <!-- BEGIN SAMPLE FORMPORTLET-->
+                    <div class="widget green">
+                        <div class="widget-title">
+                            <h4><i class="icon-reorder"></i> Change Password Form</h4>
+                            <span class="tools">
+                            <a href="javascript:;" class="icon-chevron-down"></a>
+                            <a href="javascript:;" class="icon-remove"></a>
+                            </span>
+                        </div>
+                        <div class="widget-body">
+                            <!-- BEGIN FORM-->
+                            <form action="/changepass/1/" method="POST" class="form-horizontal">
+                                {% csrf_token %}
+                                <div class="control-group">
+                                    <label class="control-label">Current Password</label>
+                                    <div class="controls">
+                                        <input class="span4 " id="password" name="oldpass" type="password" />
+                                    </div>
+                                </div>
+
+                                <div class="control-group">
+                                    <label class="control-label">New Password</label>
+                                    <div class="controls">
+                                        <input class="span4 " id="password" name="newpass" type="password" />
+                                    </div>
+                                </div>
+
+                                <div class="control-group">
+                                    <label class="control-label">Confirm New Password</label>
+                                    <div class="controls">
+                                        <input class="span4 " id="password" name="cpass" type="password" />
+                                    </div>
+                                </div>
+                                
+                                    {% if messages %}
+                                        {% for msg in messages %}
+                                            <code> {{ msg }} </code>
+                                        {% endfor %}
+                                    {% endif %}
+                               
+                                <div class="form-actions">
+                                    <button type="submit" class="btn btn-success">Submit</button>
+                                    <button type="reset" class="btn btn-default">Reset</button>
+                                    <a href="{% url 'index' %}"><button type="button" class="btn">Back</button></a>
+                                </div>
+                            </form>
+                            <!-- END FORM-->
+                        </div>
+                    </div>
+                    <!-- END SAMPLE FORM PORTLET-->
+                </div>
+            </div>
+
+            <!-- END PAGE CONTENT-->
+         </div>
+         <!-- END PAGE CONTAINER-->
+      </div>
+      <!-- END PAGE -->
+      {% endblock content%}

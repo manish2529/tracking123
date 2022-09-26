@@ -1,0 +1,67 @@
+{% extends 'base2.html' %}
+{% load static %}
+
+
+
+    {% block content %}
+
+    <!-- slider Area Start-->
+    <div class="slider-area ">
+        <!-- Mobile Menu -->
+        <div class="single-slider slider-height2 d-flex align-items-center" data-background="{% static 'assets/img/hero/camping.jpg' %}">
+            <div class="container">
+                <div class="row">
+                    <div class="col-xl-12">
+                        <div class="hero-cap text-center">
+                            <h2>Feedback</h2>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- slider Area End-->
+
+   <!--================Checkout Area =================-->
+  <section class="checkout_area section"> <br>
+    <div class="container">
+            
+        
+        <p>
+          * If you already shopped with us then only you can give feedback else first buy any product.
+        </p>
+        {% if data %}
+        <div class="billing_details">
+            <div class="row">
+                <div class="col-lg-8">
+                    <h3>Select Product</h3>
+
+                    <form class="row contact_form" action="{%url 'feedback_insert' %}" method="POST" onsubmit="return confirm('Are you sure, you want to submit..?')">
+                        {% csrf_token %}
+                        <div class="col-md-8 form-group p_star">
+                            <select class="country_select" name="product">
+                                {% for data in data %}
+                                <option value="{{data.p_id}}">{{data.p_name}}</option>
+                                {%endfor%}
+                            </select>
+                        </div>
+                        <div class="col-md-12 form-group">
+                            <h3>Feedback</h3>
+                            <textarea class="form-control" name="message"  rows="1" placeholder="Write here......."></textarea>
+                        </div>
+                         &nbsp; &nbsp; &nbsp; <button type="submit" value="submit" class="tp_btn">Submit</button>
+                        &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; <a class="tp_btn" href="{% url 'homepage' %}">Return to home</a>
+                    </form>
+                </div> 
+            </div>
+        </div>
+        {% else %}
+            <h4 class="text-center alert alert-warning"> You have no puchase any product </h4>
+            <div class="checkout_btn_inner">
+             <center> <a class="btn_1" href="{% url 'homepage' %}">Continue Shopping</a> </center> 
+            </div>
+          {% endif %}
+    </div>
+  </section>
+  <!--================End Checkout Area =================-->
+  {% endblock content %}

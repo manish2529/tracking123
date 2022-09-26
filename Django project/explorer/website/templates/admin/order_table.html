@@ -1,0 +1,115 @@
+{% extends '../base.html' %}
+{% load static %}
+
+
+
+    {% block content%}
+     <!-- BEGIN PAGE -->  
+     <div id="main-content">
+        <!-- BEGIN PAGE CONTAINER-->
+        <div class="container-fluid">
+    <!-- BEGIN PAGE HEADER-->   
+            <div class="row-fluid">
+               <div class="span12">
+                   <!-- BEGIN THEME CUSTOMIZER-->
+                   
+                   <!-- END THEME CUSTOMIZER-->
+                  <!-- BEGIN PAGE TITLE & BREADCRUMB-->
+                   <h3 class="page-title">
+                     Order Table
+                   </h3>
+                   <ul class="breadcrumb">
+                      
+                       
+                   </ul>
+                   <!-- END PAGE TITLE & BREADCRUMB-->
+               </div>
+            </div>
+            <!-- END PAGE HEADER-->
+
+
+            <!-- BEGIN EDITABLE TABLE widget-->
+             <div class="row-fluid">
+                 <div class="span12">
+                     <!-- BEGIN EXAMPLE TABLE widget-->
+                     <div class="widget purple">
+                         <div class="widget-title">
+                             <h4><i class="icon-reorder"></i> Orders</h4>
+                            <span class="tools">
+                                <a href="javascript:;" class="icon-chevron-down"></a>
+                                <a href="javascript:;" class="icon-remove"></a>
+                            </span>
+                         </div>
+                         <div class="widget-body">
+                            <div>
+                                <div class="clearfix">
+                                   <a  href="{% url 'category_xls' %}">
+                                       <button id="" class="btn btn-big btn-info">
+                                           <i class="icon-file icon-white"></i> Export
+                                       </button>
+                                   </a> 
+                                    
+                                </div>
+                                 <div class="space15"></div>
+                                 {% if order %}
+                                 <table class="table table-striped table-hover table-bordered" id="editable-sample">
+                                     <thead>
+                                     <tr>
+                                         <th><center>Order No</center></th>
+                                         <th><center>DateTime</center></th>
+                                         <th><center>Product</center></th>
+                                         <th><center>Customer</center></th>
+                                         <th><center>Ship Address</center></th>
+                                         <th><center>Bill Address</center></th>
+                                         <th><center>Order Status</center></th>
+                                         <th><center>Payment Status</center></th>
+                                     </tr>
+                                     </thead>
+                                     <tbody>  
+                                    {% for order in order %} 
+                                     <tr class="">
+                                         <td>{{order.flag}}</td>
+                                         <td>{{order.date}}</td>
+                                         <td>Product name: {{order.p_name}}<br>Price: <i class="icon-inr icon-white"> {{order.p_price}}</i> &nbsp; &nbsp; &nbsp; Quantity: {{order.qty}}<br>Total Amount: <i class="icon-inr icon-white"> {{order.total}}</i></td>
+                                         <td>{{order.cust_name}}</td>
+                                         <td>{{order.ship_add}}<br>{{order.ship_city}}:-{{order.ship_pin}}</td>
+                                         <td>{{order.bill_add}}<br>{{order.bill_city}}:-{{order.bill_pin}}</td>
+                                         {% if order.order_status == 2  %}
+                                         <td class="center">Placed <br> <br> <a  href="/delivered/{{order.order_id}}/">Delivered</a></td>
+                                         {% elif order.order_status == 0 %}
+                                         <td class="center">Delivered</td>
+                                         {% else %}
+                                         <td class="center">Canceled by Customer</td>
+                                         {% endif %}
+                                        
+                                         {% if order.order_status == 1  %}
+                                            <td class="center">   </td>
+                                         {% else %}
+                                            {% if order.payment_status == 0  %}
+                                                <td class="center">Not Paid <br> <br> <a  href="/paid/{{order.order_id}}/">Paid</a></td>
+                                            {% else %}
+                                                <td class="center">Paid</td>
+                                            {% endif %}
+                                         {% endif %}
+                                     </tr>
+                                    {% endfor %}
+                                     
+                                     </tbody>
+                                 </table>
+                                 {% else %}
+                                     <h4 class="text-center alert alert-warning"></h4> No Records Found </h4>
+                                 {% endif %}
+                             </div>
+                         </div>
+                     </div>
+                     <!-- END EXAMPLE TABLE widget-->
+                 </div>
+             </div>
+
+            <!-- END EDITABLE TABLE widget-->
+         </div>
+         <!-- END PAGE CONTAINER-->
+      </div>
+      <!-- END PAGE -->  
+
+{% endblock content%}

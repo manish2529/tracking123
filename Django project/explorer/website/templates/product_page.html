@@ -1,0 +1,79 @@
+
+{% extends 'base2.html' %}
+{% load static %}
+
+
+
+    {% block content %}
+        <!-- slider Area Start-->
+        <div class="slider-area ">
+            <!-- Mobile Menu -->
+            <div class="single-slider slider-height2 d-flex align-items-center" data-background="{% static 'assets/img/hero/camping.jpg' %}">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-xl-12">
+                            <div class="hero-cap text-center">
+                                {% for pd in product|slice:":1" %}
+                                <h2>{{pd.cat_name}}</h2>
+                                {% endfor %}
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- slider Area End-->
+        
+        <!-- product list part start-->
+        <section class="product_list section_padding">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="product_list">
+                            <div class="row">
+                                
+                                {% for pd in product %}
+                                
+                                <div class="col-lg-6 col-sm-6">
+                                    <div class="single_product_item">
+                                        
+                                        <img src="{{pd.p_image}}" alt="" class=""  width="500px" height="400px">
+                                        <center>
+                                        <h3> <a href="/product_page/single_product/{{pd.p_id}}/">{{pd.p_name}}</a></h3>
+                                        <p>Price : <span class="text-success"> &#8377;{{pd.p_price}}</span></p>
+                                        
+                                            <a href="/product_page/single_product/{{pd.p_id}}/"><button class="btn btn-dark mr-2" type="button">View Details</button></a>
+                                            <a href="/product_page/single_product/{{pd.p_id}}/"><button class="btn btn-success" type="button">BUY NOW</button></a>
+                                        </center>
+                                    </div>    
+                                </div>
+                                {% endfor %}
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <!-- product list part end-->
+        <!-- subscribe part here -->
+        <section class="subscribe_part section_padding">
+            <div class="container">
+                <div class="row justify-content-center">
+                    <div class="col-lg-8">
+                        <div class="subscribe_part_content">
+                         <h2>Get promotions & updates!</h2>
+                            <p>Seamlessly empower fully researched growth strategies and interoperable internal or “organic” sources credibly innovate granular internal .</p>
+                         <div class="subscribe_form">
+                            <input type="email" placeholder="Enter your mail">
+                            <a href="#" class="btn_1">Subscribe</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- subscribe part end -->
+        
+
+    
+    {% endblock content %}
