@@ -13,7 +13,7 @@ SECRET_KEY = '+21m7g6yozm^z4w5p!j+vqi1$$d0@#p0q6&)(=)gjm692m_@@9'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['*']
 
 
 # Application definition
@@ -68,7 +68,7 @@ DATABASES = {
         'NAME': 'explorer',
         'USER':'admin',
         'PASSWORD': '99msMI7568999566',
-        'HOST': 'django-application.ck1g1a3ky40v.us-east-2.rds.amazonaws.com',
+        'HOST': 'explorer.ce9dcks0dj3e.us-east-2.rds.amazonaws.com',
         'PORT':'3306',
         'OPTIONS': {
             'init_command': "SET sql_mode='STRICT_TRANS_TABLES'",
