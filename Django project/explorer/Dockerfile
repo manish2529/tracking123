@@ -1,6 +1,6 @@
 FROM python:3
 
-RUN apt-get update
+RUN apt-get update && apt-get install sudo -y
 
 RUN pip install django==3.2 && pip install xlwt
 
