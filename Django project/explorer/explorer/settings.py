@@ -68,7 +68,7 @@ DATABASES = {
         'NAME': 'explorer',
         'USER':'admin',
         'PASSWORD': '99msMI7568999566',
-        'HOST': 'explorer.ce9dcks0dj3e.us-east-2.rds.amazonaws.com',
+        'HOST': 'explorer.cwzv4vhqjvrk.ap-south-1.rds.amazonaws.com',
         'PORT':'3306',
         'OPTIONS': {
             'init_command': "SET sql_mode='STRICT_TRANS_TABLES'",
